@@ -1,8 +1,13 @@
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(22, 1fr);
   gap: 5px;
   align-items: center;
   width: 100%;
+}
+
+.form-grid label {
+  text-align: center;
+  border-bottom: 2px solid black;
 }/*# sourceMappingURL=scoreAreaStylesheet.css.map */
