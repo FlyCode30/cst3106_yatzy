@@ -25,6 +25,8 @@
 
 .scoreArea-container {
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   border: 5px solid black;
   height: 50%;
   margin: 2em 2em;
@@ -47,9 +49,13 @@
      object-fit: contain;
 }
 
-.current1, .current2, .current3, .current4, .current5 {
-  grid-area: dice1;
+.current1, .current2, .current3, .current4, .current5, .placeHolder {
+  max-width: 50%;
   height: auto;
   display: flex;
   justify-content: center;
+}
+
+.placeHolder {
+  visibility: hidden;
 }/*# sourceMappingURL=playAreaStylesheet.css.map */

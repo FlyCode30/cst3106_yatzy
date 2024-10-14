@@ -26,10 +26,11 @@
 }
 
 .scoreArea-container {
-    display: flex;\
-    flex-wrap: ;   // grid-template-columns: repeat(5, 1);
+    display: flex;
+    //flex-wrap: wrap;   // grid-template-columns: repeat(5, 1);
+    justify-content: space-evenly;
     //gap: 10px;
-    //align-items: center;
+    align-items: center;
     border: 5px solid black;
     height: 50%;
     //position: relative;
@@ -71,11 +72,15 @@
 
 
 
-.current1, .current2, .current3, .current4, .current5 {
-    grid-area: dice1;
+.current1, .current2, .current3, .current4, .current5, .placeHolder {
+    max-width: 50%;
     height: auto;
     display: flex;
     justify-content: center;
+}
+
+.placeHolder {
+    visibility: hidden;
 }
 
 
