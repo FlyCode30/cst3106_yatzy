@@ -23,7 +23,7 @@
   min-height: 80vh;
 }
 
-.scoreArea-container {
+.scoreAreaContainer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -32,30 +32,30 @@
   margin: 2em 2em;
 }
 
-.currentScore {
+.currentScore, .currentRoll {
   display: flex;
 }
 
-.rollArea-container {
+.rollAreaContainer {
+  display: flex;
+  background-color: burlywood;
+  justify-content: space-evenly;
+  align-items: center;
   border: 5px solid black;
   height: 50%;
   margin: 2em 2em;
 }
 
-.current1 img, .current2 img, .current3 img, .current4 img, .current5 img {
+.score1 img, .score2 img, .score3 img, .score4 img, .score5 img, .roll1 img, .roll2 img, .roll3 img, .roll4 img, .roll5 img {
   max-width: 50%;
   max-height: auto;
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-.current1, .current2, .current3, .current4, .current5, .placeHolder {
+.score1, .score2, .score3, .score4, .score5, .roll1, .roll2, .roll3, .roll4, .roll5 {
   max-width: 50%;
   height: auto;
   display: flex;
   justify-content: center;
-}
-
-.placeHolder {
-  visibility: hidden;
 }/*# sourceMappingURL=playAreaStylesheet.css.map */

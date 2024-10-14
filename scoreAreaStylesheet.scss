@@ -1,0 +1,10 @@
+// scoreAreaStylesheet
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(22, 1fr); //equals 22 rows
+    gap: 5px;
+    align-items: center; // align labels and inputs vertically
+    width: 100%;
+}
