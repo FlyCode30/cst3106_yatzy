@@ -4,12 +4,14 @@
 }
 
 .board-border {
+  display: flex;
+  flex-direction: col;
   border: 15px solid brown;
   background-color: lightgreen;
-  margin-right: 15px;
 }
 
 .score-border {
+  flex-direction: column;
   border: 5px solid black;
 }
 
@@ -20,7 +22,8 @@
 }
 
 .scoreTableContainer {
-  min-height: 80vh;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
 }
 
 .scoreAreaContainer {
