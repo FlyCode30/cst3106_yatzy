@@ -80,6 +80,8 @@ function getDiceNumber() {
 
 function getDice() {
 
+    clearChoiceDice();
+
     for (let i = 1; i <= 5; i++) {
         const diceContainer = document.getElementById(`dice${i}`); // get the container that holds the image
         console.log(`Dice container for roll ${i}`, diceContainer);
@@ -93,26 +95,44 @@ function getDice() {
         console.log(`Generated image path: ${imgPath}`);
 
         diceContainer.src = imgPath;
+
+        
     }
+
+      // clears the 
+     
+
+}
+
+function clearChoiceDice() {
+
+    for (let i = 1; i <= 5; i++) {
+        const diceContainer = document.getElementById(`choice${i}`);
+
+        diceContainer.src = "side0.png"
+    }
+
 }
 
 function selectDiceClick(diceNumber) {
 
     const clickedDice = document.getElementById(`dice${diceNumber}`);
+    const choiceDice = document.getElementById(`choice${diceNumber}`);
 
     if (clickedDice.style.display === "none") {
         clickedDice.style.display = "flex";
     } else {
         clickedDice.style.display = "none";
+       
+        const imgPath = clickedDice.src // I think this is mostly right. The part of i'm not sure about is I want to get the same image path of the clickedDice
 
-        diceContainer = document.getElementById(`choice${diceNumber}`);
-        const imgPath = 'side'
+        choiceDice.src = imgPath;
     }
 }
 
 function reRoll() {
 
-    
+    // rolls new dice for all 5 dice in the roll area
     for (let i = 1; i <= 5; i++) {
         let diceContainer = document.getElementById(`dice${i}`); // get the container that holds the image
         console.log(`Dice container for roll ${i}`, diceContainer);
@@ -126,7 +146,6 @@ function reRoll() {
     
             diceContainer.src = imgPath;
         }
-
     }
 }
 
