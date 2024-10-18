@@ -92,7 +92,15 @@
     justify-content: center;
 }
 
+.buttonDiv {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 25px;
+}
 
+.newRoll, .reRoll, .score {
+    font-size: 1.5em;
+}
 
 
 // .scoreArea-container {
