@@ -28,15 +28,16 @@ newRollButton.addEventListener('click', getDice);
 
 reRollButton.addEventListener('click', reRoll);
 
-//scoreButton.addEventListener('click', getCountValuesAll);
-
-// yatzy javascript
-
 let counter = 0;
 
 const fullRoll = [];
 
-console.log(fullRoll);
+
+// yatzy javascript
+
+
+
+
 
 
 // get values for all the dice
@@ -54,7 +55,7 @@ function getFullRoll() {
 
         // console.log(value);
 
-        if (value) {
+        if (!(value === 0 || diceContainer.style.display === "none")) {
             fullRoll.push(value)
         }
     }
@@ -68,7 +69,7 @@ function getFullRoll() {
 
         // console.log(value);
 
-        if (value) {
+        if (!(value===0 || diceContainer.style.display === "none")) {
             fullRoll.push(value)
         }
     }
@@ -97,6 +98,7 @@ function controlButtons() {
         document.getElementById('reRoll').disabled = true;
         document.getElementById('score').disabled = false;
         getFullRoll();
+        clearRollDice(); /* added */
     } else {
         console.log("Counter has been reset");
     }
@@ -181,7 +183,22 @@ function clearChoiceDice() {
 
         diceContainer.src = "side0.png"
     }
+}
 
+/* added */
+
+function clearRollDice() {
+
+    for (let i = 1; i <= 5; i++) {
+        const rolledDice = document.getElementById(`dice${i}`);
+        const choiceDice = document.getElementById(`choice${i}`);
+
+        if (rolledDice.style.display === "flex") {
+            const imgPath = rolledDice.src
+            choiceDice.src = imgPath;
+            rolledDice.src = "side0.png"
+        }
+    }
 }
 
 function selectDiceClick(diceNumber) {
