@@ -36,7 +36,7 @@ let scoreTotalTop = 0;
 let scoreTotalBot = 0;
 
 // this array holkds the dice choosen by the user
-const fullRoll = [];
+let fullRoll = [];
 let countTotal = [0,0,0,0,0,0];
 
 
@@ -89,15 +89,39 @@ function arrayScoreCounterBot() {
 
     let botSum;
     let maxCount = Math.max(...countTotal);
-    let minCount = Math.min(...countTotal);
     //let botScoreValue;
     let botScoreFieldYah;
     let botScoreFieldSum;
+    let botScoreFieldFH;
+    let has3k = false;
+    let has2k = false;
+    let ss = false;
+
+    // checks for a small straight
+
+    isSmallStraight();
+
+    // checks for a full house
+
+    for (let i = 0; i < countTotal.length; i++) {
+        if (countTotal[i] === 3) {
+            has3k = true;
+        } else if (countTotal[i] === 2) {
+            has2k = true;
+        }
+    }
+
+    if (has3k && has2k) {
+        botScoreFieldFH = document.getElementById('g1-fh')
+        botScoreFieldFH.placeholder = 25;
+    }
+
+    // checks for yahztee, kinds, and chances
 
     if (maxCount === 5) {
         botScoreFieldYah = document.getElementById(`g1-yah`);
         botScoreFieldYah.placeholder += 50;
-        botScoreFieldSum = document.querySelectorAll('#g1-3k, #g1-4k,#g1-yah, #g1-chance');
+        botScoreFieldSum = document.querySelectorAll('#g1-3k, #g1-4k, #g1-chance');
         botSum = fullRoll.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
         botScoreFieldSum.forEach (field => {
             field.placeholder = botSum;
@@ -118,7 +142,22 @@ function arrayScoreCounterBot() {
 
     console.log("Count Total: ", countTotal);
     console.log("Highest Count: ", maxCount);
-    console.log("Lowest Count: ", minCount);
+    console.log('has 2k is ', has2k);
+    console.log('has 3k is', has3k);
+}
+
+function isSmallStraight() {
+
+    let botScoreFieldSS = document.getElementById('g1-ss')
+
+    if (countTotal[0] >= 1 && countTotal[1] >= 1 && countTotal[2] >= 1 && countTotal[3] >= 1) {
+        botScoreFieldSS.placeholder = 25;
+    } else if (countTotal[1] >= 1 && countTotal[2] >= 1 && countTotal[3] >= 1 && countTotal[4] >= 1) {
+        botScoreFieldSS.placeholder = 25;
+    } else if (countTotal[2] >= 1 && countTotal[3] >= 1 && countTotal[4] >= 1 && countTotal[5] >= 1) {
+        botScoreFieldSS.placeholder = 25;
+    }
+
 }
 
 // scores and rerolls
@@ -126,8 +165,12 @@ function arrayScoreCounterBot() {
 function scoreClear() {
 
     clearChoiceDice();
-    counter = 0;
+    clearPlaceHolder(); // clears placeholders from the roll
+    counter = 0; // resets counter to 0
+    //has2k = false; // resets for full house
+    //has3k = false; // resets for full house
     getDice();
+ 
 
     console.log('Counter is: ', counter);
 }
@@ -187,8 +230,8 @@ function getDice() {
 
     counter++;
     controlButtons();
-    console.log(counter);
-    console.log(document.getElementById('newRoll').disabled);
+    //console.log(counter);
+    //console.log(document.getElementById('newRoll').disabled);
 }
 
 // roles the dice again after the initial roll
@@ -213,8 +256,8 @@ function reRoll() {
 
     counter++;
     controlButtons();
-    console.log(counter);
-    console.log(document.getElementById('newRoll').disabled);
+    //console.log(counter);
+    //console.log(document.getElementById('newRoll').disabled);
 }
 
 // allows player to select a dice and move it to the scoring area
@@ -255,7 +298,7 @@ function getFullRoll() {
         }
     }
 
-    console.log(fullRoll);
+    console.log('Full Roll is: ',fullRoll);
     return fullRoll;
 }
 
@@ -293,7 +336,7 @@ function getCountVale(diceRoll) {
     }
 }
 
-// clears any dice in the score area and replaces with empty dice image
+// clears any dice in the score area and replaces with empty dice image. Also resets fullFull and count Totals
 
 function clearChoiceDice() {
 
@@ -302,6 +345,9 @@ function clearChoiceDice() {
 
         diceContainer.src = "side0.png"
     }
+
+    fullRoll = [];
+    countTotal = [0,0,0,0,0,0]
 }
 
 // clears dice in the roll area and moves them to the scoring area
@@ -318,4 +364,18 @@ function clearRollDice() {
             rolledDice.src = "side0.png"
         }
     }
+}
+
+// clears placeholder after each turn
+
+function clearPlaceHolder() {
+
+    const placeHolderInput = document.querySelectorAll('input[name="g1"]');
+
+    placeHolderInput.forEach(field => {
+        
+        if (!field.value) {
+            field.placeholder = "";
+        }
+    })
 }
