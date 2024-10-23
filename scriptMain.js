@@ -83,12 +83,16 @@ function arrayScoreCounterTop() {
 
 }
 
+// calculate the variable that appears the most for a given roll
+
+function calculateMaxCount() {
+    maxCount = Math.max(...countTotal);
+}
 
     // getting the value of kinds, yahtee, full house 
 function arrayScoreCounterBot() {
 
     let botSum;
-    let maxCount = Math.max(...countTotal);
     //let botScoreValue;
     let botScoreFieldYah;
     let botScoreFieldSum;
@@ -97,9 +101,13 @@ function arrayScoreCounterBot() {
     let has2k = false;
     let ss = false;
 
+    calculateMaxCount();
+
     // checks for a small straight
 
+    isLargeStraight();
     isSmallStraight();
+
 
     // checks for a full house
 
@@ -144,6 +152,7 @@ function arrayScoreCounterBot() {
     console.log("Highest Count: ", maxCount);
     console.log('has 2k is ', has2k);
     console.log('has 3k is', has3k);
+    // console.log('has LS: ', )
 }
 
 function isSmallStraight() {
@@ -159,6 +168,31 @@ function isSmallStraight() {
     }
 
 }
+
+function isLargeStraight() {
+
+    calculateMaxCount();
+    let botScoreFieldLS = document.getElementById('g1-ls')
+
+    if (maxCount === 1 && (countTotal[0] === 0 || countTotal[5] === 0)) {
+        console.log("You got a large straight");
+        botScoreFieldLS.placeholder = 30;
+    } else {
+        console.log("No larges straight");1
+    }
+}
+
+// function calculateBonusTop {
+
+//     let topSubTop = document.getElementById('subTot-up-g1');
+//     let topBonusTop = document.getElementById('bonus-up-g1');
+//     let topTotalTop = document.getElementById('tot-up-g1');
+
+//     botScoreFieldSum = document.querySelectorAll('#g1-3k, #g1-4k, #g1-chance');
+//     botScoreFieldSum.forEach (field => {
+//         field.placeholder = botSum;
+//     })    
+// }
 
 // scores and rerolls
 
